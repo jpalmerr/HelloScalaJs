@@ -7,7 +7,18 @@ import scala.scalajs.js.annotation.JSExportTopLevel
 
 object TutorialApp {
   def main(args: Array[String]): Unit = {
-    appendPar(document.body, "Hello World")
+    document.addEventListener("DOMContentLoaded", { (e: dom.Event) =>
+      setupUI()
+    })
+  }
+
+  def setupUI(): Unit = {
+    val button = document.createElement("button")
+    button.textContent = "Click me!"
+    button.addEventListener("click", { (e: dom.MouseEvent) =>
+      addClickedMessage()
+    })
+    document.body.appendChild(button)
   }
 
   def appendPar(targetNode: dom.Node, text: String): Unit = {
